@@ -15,6 +15,18 @@ namespace Noise_and_Filter
         public Form1()
         {
             InitializeComponent();
+            Mean_Mask_Size.Items.AddRange(new object[] {"3 x 3",
+                        "5 x 5",
+                        "7 x 7",
+                        "9 x 9",
+                        "11 x 11"});
+            Mean_Mask_Size.SelectedItem = "3 x 3";
+            Media_Mask_Size.Items.AddRange(new object[] {"3 x 3",
+                        "5 x 5",
+                        "7 x 7",
+                        "9 x 9",
+                        "11 x 11"});
+            Media_Mask_Size.SelectedItem = "3 x 3";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,6 +40,44 @@ namespace Noise_and_Filter
         private void Change_SaltAndPepper_NumberLable(object sender, EventArgs e)
         {
             Salt_and_Pepper_Number.Text = trackBar1.Value.ToString() + "%";
+        }
+
+        private void Noise_Button_Click(object sender, EventArgs e)
+        {
+            Bitmap Source_Image = new Bitmap(Source_Image_PictureBox.Image);
+            Noise_Result_Image_PictureBox.Image =  Salt_And_Pepper.Handle(Source_Image, trackBar1.Value);
+        }
+
+        private void Filter_Button_Click(object sender, EventArgs e)
+        {
+            Bitmap Source_Image;
+            if (Use_Noise_Result.Checked == true)
+            {
+                try
+                {
+                    Source_Image = new Bitmap(Noise_Result_Image_PictureBox.Image);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("沒有輸出圖片");
+                    return;
+                }
+            }
+            else
+            {
+                Source_Image = new Bitmap(Source_Image_PictureBox.Image);
+            }
+                
+            if (Mean_Filter_Button.Checked == true)
+            {
+                int Mask_Size = Convert.ToInt32(Mean_Mask_Size.SelectedItem.ToString().Split()[0]);
+                Filter_Result_Image_PictureBox.Image = Mean_Filter.Handle(Source_Image, Mask_Size);
+            }
+            else
+            {
+                int Mask_Size = Convert.ToInt32(Media_Mask_Size.SelectedItem.ToString().Split()[0]);
+                Filter_Result_Image_PictureBox.Image = Media.Handle(Source_Image, Mask_Size);
+            }
         }
     }
 }

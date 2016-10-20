@@ -37,18 +37,20 @@
             this.Salt_and_Pepper = new System.Windows.Forms.RadioButton();
             this.Mean_Filter_Button = new System.Windows.Forms.RadioButton();
             this.Media_Filter_Button = new System.Windows.Forms.RadioButton();
-            this.Result_Image_PictureBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Noise_Result_Image_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Filter_Result_Image_PictureBox = new System.Windows.Forms.PictureBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.Salt_and_Pepper_Number = new System.Windows.Forms.Label();
             this.Use_Noise_Result = new System.Windows.Forms.CheckBox();
             this.Filter_Button = new System.Windows.Forms.Button();
             this.Noise_Button = new System.Windows.Forms.Button();
+            this.Mean_Mask_Size = new System.Windows.Forms.ComboBox();
+            this.Media_Mask_Size = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Source_Image_PictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Result_Image_PictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Noise_Result_Image_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Filter_Result_Image_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +93,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Media_Mask_Size);
+            this.groupBox2.Controls.Add(this.Mean_Mask_Size);
             this.groupBox2.Controls.Add(this.Filter_Button);
             this.groupBox2.Controls.Add(this.Use_Noise_Result);
             this.groupBox2.Controls.Add(this.Media_Filter_Button);
@@ -129,7 +133,7 @@
             // 
             this.Mean_Filter_Button.AutoSize = true;
             this.Mean_Filter_Button.Checked = true;
-            this.Mean_Filter_Button.Location = new System.Drawing.Point(6, 36);
+            this.Mean_Filter_Button.Location = new System.Drawing.Point(6, 21);
             this.Mean_Filter_Button.Name = "Mean_Filter_Button";
             this.Mean_Filter_Button.Size = new System.Drawing.Size(76, 16);
             this.Mean_Filter_Button.TabIndex = 1;
@@ -140,30 +144,30 @@
             // Media_Filter_Button
             // 
             this.Media_Filter_Button.AutoSize = true;
-            this.Media_Filter_Button.Location = new System.Drawing.Point(125, 36);
+            this.Media_Filter_Button.Location = new System.Drawing.Point(126, 21);
             this.Media_Filter_Button.Name = "Media_Filter_Button";
             this.Media_Filter_Button.Size = new System.Drawing.Size(79, 16);
             this.Media_Filter_Button.TabIndex = 2;
             this.Media_Filter_Button.Text = "Media Filter";
             this.Media_Filter_Button.UseVisualStyleBackColor = true;
             // 
-            // Result_Image_PictureBox
+            // Noise_Result_Image_PictureBox
             // 
-            this.Result_Image_PictureBox.Location = new System.Drawing.Point(712, 12);
-            this.Result_Image_PictureBox.Name = "Result_Image_PictureBox";
-            this.Result_Image_PictureBox.Size = new System.Drawing.Size(316, 312);
-            this.Result_Image_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Result_Image_PictureBox.TabIndex = 5;
-            this.Result_Image_PictureBox.TabStop = false;
+            this.Noise_Result_Image_PictureBox.Location = new System.Drawing.Point(712, 12);
+            this.Noise_Result_Image_PictureBox.Name = "Noise_Result_Image_PictureBox";
+            this.Noise_Result_Image_PictureBox.Size = new System.Drawing.Size(316, 312);
+            this.Noise_Result_Image_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Noise_Result_Image_PictureBox.TabIndex = 5;
+            this.Noise_Result_Image_PictureBox.TabStop = false;
             // 
-            // pictureBox1
+            // Filter_Result_Image_PictureBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(712, 330);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(316, 312);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.Filter_Result_Image_PictureBox.Location = new System.Drawing.Point(712, 330);
+            this.Filter_Result_Image_PictureBox.Name = "Filter_Result_Image_PictureBox";
+            this.Filter_Result_Image_PictureBox.Size = new System.Drawing.Size(316, 312);
+            this.Filter_Result_Image_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Filter_Result_Image_PictureBox.TabIndex = 6;
+            this.Filter_Result_Image_PictureBox.TabStop = false;
             // 
             // trackBar1
             // 
@@ -190,7 +194,7 @@
             // Use_Noise_Result
             // 
             this.Use_Noise_Result.AutoSize = true;
-            this.Use_Noise_Result.Location = new System.Drawing.Point(6, 73);
+            this.Use_Noise_Result.Location = new System.Drawing.Point(7, 83);
             this.Use_Noise_Result.Name = "Use_Noise_Result";
             this.Use_Noise_Result.Size = new System.Drawing.Size(144, 16);
             this.Use_Noise_Result.TabIndex = 3;
@@ -205,6 +209,7 @@
             this.Filter_Button.TabIndex = 4;
             this.Filter_Button.Text = "計算濾波";
             this.Filter_Button.UseVisualStyleBackColor = true;
+            this.Filter_Button.Click += new System.EventHandler(this.Filter_Button_Click);
             // 
             // Noise_Button
             // 
@@ -214,6 +219,25 @@
             this.Noise_Button.TabIndex = 5;
             this.Noise_Button.Text = "計算雜訊";
             this.Noise_Button.UseVisualStyleBackColor = true;
+            this.Noise_Button.Click += new System.EventHandler(this.Noise_Button_Click);
+            // 
+            // Mean_Mask_Size
+            // 
+            this.Mean_Mask_Size.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Mean_Mask_Size.FormattingEnabled = true;
+            this.Mean_Mask_Size.Location = new System.Drawing.Point(17, 43);
+            this.Mean_Mask_Size.Name = "Mean_Mask_Size";
+            this.Mean_Mask_Size.Size = new System.Drawing.Size(65, 20);
+            this.Mean_Mask_Size.TabIndex = 7;
+            // 
+            // Media_Mask_Size
+            // 
+            this.Media_Mask_Size.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Media_Mask_Size.FormattingEnabled = true;
+            this.Media_Mask_Size.Location = new System.Drawing.Point(126, 43);
+            this.Media_Mask_Size.Name = "Media_Mask_Size";
+            this.Media_Mask_Size.Size = new System.Drawing.Size(65, 20);
+            this.Media_Mask_Size.TabIndex = 8;
             // 
             // Form1
             // 
@@ -221,8 +245,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1043, 664);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.Result_Image_PictureBox);
+            this.Controls.Add(this.Filter_Result_Image_PictureBox);
+            this.Controls.Add(this.Noise_Result_Image_PictureBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Source_Image_PictureBox);
@@ -234,8 +258,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Result_Image_PictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Noise_Result_Image_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Filter_Result_Image_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
@@ -252,13 +276,15 @@
         private System.Windows.Forms.RadioButton Gaussian_Noise_Button;
         private System.Windows.Forms.RadioButton Media_Filter_Button;
         private System.Windows.Forms.RadioButton Mean_Filter_Button;
-        private System.Windows.Forms.PictureBox Result_Image_PictureBox;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox Noise_Result_Image_PictureBox;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label Salt_and_Pepper_Number;
         private System.Windows.Forms.Button Filter_Button;
         private System.Windows.Forms.CheckBox Use_Noise_Result;
         private System.Windows.Forms.Button Noise_Button;
+        private System.Windows.Forms.ComboBox Mean_Mask_Size;
+        private System.Windows.Forms.ComboBox Media_Mask_Size;
+        internal System.Windows.Forms.PictureBox Filter_Result_Image_PictureBox;
     }
 }
 
