@@ -53,6 +53,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gaussian_Noise.cs" />
     <Compile Include="Mean_Filter.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Program.cs" />
